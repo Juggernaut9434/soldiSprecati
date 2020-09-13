@@ -11,3 +11,4 @@ Finished on:
 ## How to Play
 
 ## Acknowledgements
+- 52 Card Deck by [Dutchmann on Proflat](http://kibernetik.pro/forum/memberlist.php?mode=viewprofile&u=195)
