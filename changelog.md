@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file
 A changelog is not a git commit history
 
 ## [Unreleased]
+
+### [Edited]
+### [Removed]
+
+## [v0.0.0.1] 9/13/2020 3:13AM
 ### [Added]
 - Card Class to represent and later used in with the Card Images
 - Utilities package and class for static function calls.
@@ -12,13 +17,7 @@ A changelog is not a git commit history
 - Seperating the GUI aspect from the applicaiton
 - Preparing to create rules for the Soldi Sprecati game logic like poker, black jack, slots
 
-### [Edited]
-### [Removed]
-
-## [v0.0.0.1]
-
-
-## [v0.0.0.0]
+## [v0.0.0.0] 9/12/2020
 ### [Added]
 - General Setup including
 	- Main.java to run the program
