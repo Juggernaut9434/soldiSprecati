@@ -32,6 +32,22 @@ public class Deck {
 	{
 		// shuffle the deck, could be substituted with Collections shuffle
 		// but made it a local method instead. either way
-		Collections.shuffle(deck); 	
+		for(int i=0;i<4;i++)
+			Collections.shuffle(deck); 	
 	}
+	
+	/*
+	 * + getTopCard(): Card
+	 * @return Card: card on top of the deck == first card in the deck
+	 */
+	
+	/*
+	 * + deal(int int)
+	 * @param numOfCards: int, number of Cards to deal out to the players at the table
+	 * @param numOfPeople: int, number of people to deal cards to at the table
+	 */
+	
+	/*
+	 * 
+	 */
 }
