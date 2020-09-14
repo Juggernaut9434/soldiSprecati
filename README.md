@@ -2,6 +2,8 @@
 
 Other known as "wasted money" is a top-down casino game using a GUI set called *JavaFX*
 
+[UML Diagram](https://app.creately.com/diagram/7FrWto0r3Au/edit)
+
 Started on: 12 Sept 2020
 
 Finished on:

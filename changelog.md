@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file
 A changelog is not a git commit history
 
 ## [Unreleased]
+### [Added]
+- UML Diagram for Project includes changes to implementations for 
+Games, players, etc. Most Likely to implement more animation Logic
+later before implementation. Analysis -> Design -> Implement.
 
 ### [Edited]
 ### [Removed]
