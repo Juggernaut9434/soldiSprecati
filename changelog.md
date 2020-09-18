@@ -8,6 +8,13 @@ A changelog is not a git commit history
 - UML Diagram for Project includes changes to implementations for 
 Games, players, etc. Most Likely to implement more animation Logic
 later before implementation. Analysis -> Design -> Implement.
+- Taking a step back and starting slower with just Poker or BlackJack
+then building the other games then finally building the top down UI/UX
+- `/gui` for all fxml scenes and Controllers.
+- `application/Foobar` to test out features like
+connections between application and a fxml scene, etc. which will be
+a testing ground before jumping directly into `Main`
+- Deck Sprites
 
 ### [Edited]
 ### [Removed]
