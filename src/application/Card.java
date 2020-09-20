@@ -1,3 +1,9 @@
+/* Card.java [completed]
+ * Author: Mike Mathews 2020
+ * Card.java will be implemented into an array called Deck
+ * It has two attributes, a rank and a suit.
+ */
+
 package application;
 
 public class Card {
@@ -57,4 +63,17 @@ public class Card {
 			throw new IllegalArgumentException(errMsg);
 		SUIT=suit;
 	}
+	
+	public String toString()
+	{
+		return String.format("Card:\tRank: %c\tSuit: %c\n", getRank(),getSuit());
+	}
+	
+	/* Card Check
+	public static void main(String[] args)
+	{
+		Card card = new Card('A', 'H');
+		System.out.print(card);
+	}
+	*/
 }

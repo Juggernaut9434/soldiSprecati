@@ -1,3 +1,7 @@
+// Main.java
+// Author: Mike Mathews 2020
+// the main application class
+
 package application;
 	
 import javafx.application.Application;

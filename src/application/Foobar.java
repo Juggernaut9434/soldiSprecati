@@ -1,3 +1,8 @@
+// Foobar.java
+// Author: Mike Mathews 2020
+// a testing class for applications
+
+
 package application;
 
 import java.io.IOException;

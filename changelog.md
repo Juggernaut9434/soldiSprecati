@@ -5,6 +5,13 @@ A changelog is not a git commit history
 
 ## [Unreleased]
 ### [Added]
+
+### [Edited]
+
+### [Removed]
+
+## [v0.0.1.0] 9/20/2020 4:50AM
+### [Added]
 - UML Diagram for Project includes changes to implementations for 
 Games, players, etc. Most Likely to implement more animation Logic
 later before implementation. Analysis -> Design -> Implement.
@@ -15,9 +22,10 @@ then building the other games then finally building the top down UI/UX
 connections between application and a fxml scene, etc. which will be
 a testing ground before jumping directly into `Main`
 - Deck Sprites
+- User Exceptions in `exceptions/`
 
 ### [Edited]
-### [Removed]
+- Card, Deck, Gambler<Renamed from Player>: to match UML diagram
 
 ## [v0.0.0.1] 9/13/2020 3:13AM
 ### [Added]
