@@ -69,7 +69,7 @@ public class Deck {
 	 * @param numOfCards: int, number of Cards to deal out to the players at the table
 	 * @param numOfPeople: int, number of people to deal cards to at the table
 	 */
-	public void deal(int numOfCards, int numOfPeople)
+	public void deal(int numOfCards, ArrayList<Gambler> players)
 	{
 		
 	}

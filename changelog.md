@@ -5,8 +5,10 @@ A changelog is not a git commit history
 
 ## [Unreleased]
 ### [Added]
+- Hand, to hold an array of cards
 
 ### [Edited]
+- Table, BlackJack more logic
 
 ### [Removed]
 

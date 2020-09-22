@@ -6,16 +6,19 @@ package application;
 import exceptions.GameEndException;
 
 public class Gambler {
-	// suspicion is game mechanic in DLC
-	// chips is monetary value in game
-	// GameIndex and playerIndex are for DLC game mechanics
+	/**
+	 *  suspicion is game mechanic in DLC
+	 * chips is monetary value in game
+	 * GameIndex and playerIndex are for DLC game mechanics
+	 */
 	private int suspicion, chips, ssGameIndex, playerIndex;
 	private String name;
+	private Hand hand;
 	//public static int guid;	
 	//private int uid;
 	public static boolean dead;	// game state, if(dead) SSEnds();
 	
-	/*
+	/***
 	 * + Gambler(int, String)
 	 */
 	public Gambler(int chips, String name)
@@ -30,8 +33,8 @@ public class Gambler {
 		//this.guid++;
 	}
 	
-	/*
-	 * + Gamebler(int)
+	/***
+	 * + Gambler(int)
 	 */
 	public Gambler(int chips)
 	{
@@ -41,12 +44,12 @@ public class Gambler {
 		this.ssGameIndex = -1;
 		this.playerIndex = -1;
 		Gambler.dead = false;	// static call
-		//this.uid = guid + 1;
+		//this.uid = guid+ 1;
 		//this.guid++;
 	}
 	
 	/**************************
-	 * Accessors
+	 * Getters
 	 **************************/
 	public int getSuspicion() {return this.suspicion;}
 	public int getChips() {return this.chips;}
@@ -56,13 +59,15 @@ public class Gambler {
 	public String getName() {return this.name;}
 	
 	/**************************
-	 * Mutators
+	 * Setters
 	 **************************/
-	// set or change name (possible DLC GM
-	public void setName(String name) {this.name = name;}
-	// change suspicion DLC GM
-	/*
+	public void setName(String name) {this.name = name;} 	// set or change name (possible DLC GM)
+	public void setGameIndex(int gameIndex) {this.ssGameIndex = gameIndex;}
+	public void setPlayerIndex(int playerIndex) {this.playerIndex = playerIndex;}
+	//
+	/***
 	 * + setSuspicion(int): void > GameEndException
+	 * change suspicion DLC GM
 	 * @param int: sus, what you want to add/subtract from suspicion state
 	 * if 5 or over, end the game.
 	 */
@@ -76,7 +81,7 @@ public class Gambler {
 		}
 	}
 	
-	/*
+	/***
 	 * + setChips(int): void > GameEndException
 	 * @param chips: int, chips you want to add or subtract from current stack
 	 * if less than or equal to 0, end the game
@@ -91,9 +96,9 @@ public class Gambler {
 		}
 	}
 	
-	// if dead, end game
-	/*
+	/***
 	 * + _endGame()_: void > GameEndException
+	 * 	if dead, end game
 	 * checks if the game can end, player is dead
 	 * then games game with funny message
 	 */
@@ -101,5 +106,13 @@ public class Gambler {
 	{
 		if(Gambler.dead)
 			throw new GameEndException();	// funny ending messages
+	}
+	
+	/***
+	 * + toString(): String
+	 */
+	public String toString()
+	{
+		return String.format("Gambler: %s\tChips: %d\tGame: %d\n", this.name, this.chips, this.ssGameIndex);
 	}
 }
