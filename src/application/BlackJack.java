@@ -6,18 +6,25 @@
 
 package application;
 
+import java.util.ArrayList;
+
 import exceptions.InvalidLogicException;
 
 public class BlackJack extends Table {
 	
 	private Deck deck;
 
-	public BlackJack(int gameIndex, int maxPlayers, int ante, String dealer) throws InvalidLogicException 
+	public BlackJack(int gameIndex, int maxPlayers, int ante, String dealer) 
 	{
 		super(gameIndex, maxPlayers, ante, dealer);
 		// make a deck and shuffle it
 		deck = new Deck();
-		deck.shuffle();
+		try {
+			deck.shuffle();
+		} catch(InvalidLogicException e)
+		{
+			deck = new Deck();
+		}
 	}
 	
 	/***
@@ -32,7 +39,9 @@ public class BlackJack extends Table {
 		if(numOfPlayers<1)
 			throw new InvalidLogicException("BlackJack.mainPlay():\tNo players to play"
 					+ "\nplayers:" + players);
-		
+		// deal 2 cards to every player and evaluate their round's cards value
+		// ask player to place a bet
+		// ask player to hit stay, split, etc
 	}
 	
 }

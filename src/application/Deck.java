@@ -68,10 +68,23 @@ public class Deck {
 	 * Remove all cards dealt from deck.
 	 * @param numOfCards: int, number of Cards to deal out to the players at the table
 	 * @param numOfPeople: int, number of people to deal cards to at the table
+	 * @return ArrayList<ArrayList<Card>>: a 2D array of cards, each row is a single player's cards
 	 */
-	public void deal(int numOfCards, ArrayList<Gambler> players)
+	public ArrayList<ArrayList<Card>> deal(int numOfCards, int numOfPeople)
 	{
-		
+		// 2D Array
+		ArrayList<ArrayList<Card>> dealtHands = new ArrayList<ArrayList<Card>>();
+		// Nested For loop to reach into the 2D Array
+		for(int i=0;i<numOfPeople;i++)
+		{
+			ArrayList<Card> hand = new ArrayList<Card>();	// blank array
+			for(int j=0;j<numOfCards;j++)
+			{
+				hand.add(this.getTopCard());				// build the blank array
+			}
+			dealtHands.add(hand);							// add blank array to 2D array
+		}
+		return dealtHands;
 	}
 	
 	/*
@@ -84,12 +97,12 @@ public class Deck {
 	}
 	
 	/* Deck Check
-	public static void main(String[] args)
+	public static void main(String[] args) throws InvalidLogicException
 	{
 		Deck deck = new Deck();
 		deck.shuffle();
-		System.out.print(deck.getTopCard());
+		System.out.print(deck.deal(2, 4));
 		System.out.print(deck);
 	}
-	 */
+	*/
 }

@@ -13,7 +13,6 @@ public class Gambler {
 	 */
 	private int suspicion, chips, ssGameIndex, playerIndex;
 	private String name;
-	private Hand hand;
 	//public static int guid;	
 	//private int uid;
 	public static boolean dead;	// game state, if(dead) SSEnds();
