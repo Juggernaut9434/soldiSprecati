@@ -35,10 +35,10 @@ public class Gambler {
 	/***
 	 * + Gambler(int)
 	 */
-	public Gambler(int chips)
+	public Gambler(String name)
 	{
-		this.chips = chips;
-		this.name = null;
+		this.chips = 10000;
+		this.name = name;
 		this.suspicion = 0;
 		this.ssGameIndex = -1;
 		this.playerIndex = -1;

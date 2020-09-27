@@ -1,17 +1,19 @@
 package application;
 
+import java.util.ArrayList;
+
 public class Hand {
 	private int playerIndex;
-	private Card[] cardsInHand;
+	private ArrayList<Card> cardsInHand;
 	
-	public Hand(int playerIndex, Card[] cardsDealt)
+	public Hand(int playerIndex, ArrayList<Card> cardsDealt)
 	{
 		this.playerIndex = playerIndex;
 		this.cardsInHand = cardsDealt;
 	}
 	
 	public int getPlayerIndex() {return this.playerIndex;}
-	public Card[] getHand() {return this.cardsInHand;}
+	public ArrayList<Card> getHand() {return this.cardsInHand;}
 	
 	public String toString()
 	{

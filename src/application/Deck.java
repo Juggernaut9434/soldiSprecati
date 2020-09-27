@@ -96,13 +96,4 @@ public class Deck {
 		return String.format("Deck:\tCount: %d\n", this.deck.size()) + this.deck;
 	}
 	
-	/* Deck Check
-	public static void main(String[] args) throws InvalidLogicException
-	{
-		Deck deck = new Deck();
-		deck.shuffle();
-		System.out.print(deck.deal(2, 4));
-		System.out.print(deck);
-	}
-	*/
 }
