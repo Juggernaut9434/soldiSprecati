@@ -19,6 +19,7 @@ public class BlackJack extends Table {
 	{
 		// BlackJack gameIndex = 1
 		super(1, maxPlayers, ante, dealer);
+		
 		// make a deck and shuffle it
 		deck = new Deck();
 		try {
@@ -38,6 +39,7 @@ public class BlackJack extends Table {
 	public void mainPlay() throws InvalidLogicException
 	{
 		int numOfPlayers = super.players.size();
+		int[] playerScores = new int[numOfPlayers];		// instance with ints with the size of players
 		// catch if no other players besides dealer are in
 		if(numOfPlayers<=1)
 			throw new InvalidLogicException("BlackJack.mainPlay():\tNo players to play"
@@ -47,18 +49,38 @@ public class BlackJack extends Table {
 		playerHands = deck.deal(2, numOfPlayers);
 		
 		// access the player then access card within player
+		int i=0;	// for the playerScores index iteration
 		for(ArrayList<Card> player: playerHands)
 		{
 			for(Card card: player)
 			{
-				System.out.print(card);
+				playerScores[i] += this.getScoreVal(card);	// get total score of player and add to hand
 			}
-			System.out.print("---\n");
+			i++;	// go to next player
 		}
-		// ask player to place a bet
-		// ask player to hit stay, split, etc
 		
+		// ask player to place a bet	
 	}
+	
+	public int getScoreVal(Card card) throws InvalidLogicException
+	{
+		char r = card.getRank();
+		// r is a royal or ten
+		if(("TJQK".indexOf(r) != -1))
+			return 10;
+		else if("23456789".indexOf(r) != -1)
+			return (int) r;
+		else if("A".indexOf(r) != -1)
+			return 11;
+		else
+			throw new InvalidLogicException("BlackJack.java: Only ranks A23456789TJQK are allowed\n");
+	}
+	
+	// hit
+	// stay
+	// split
+	// bust
+	// bet
 	
 	public static void main(String[] args)
 	{
