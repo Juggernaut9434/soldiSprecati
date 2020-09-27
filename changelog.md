@@ -6,6 +6,8 @@ A changelog is not a git commit history
 ## [Unreleased]
 ### [Added]
 - Hand, to hold an array of cards
+- BlackJack: the first game for Soldi Sprecati
+that has actions for the game and started on logic.
 
 ### [Edited]
 - Table, BlackJack more logic

@@ -60,6 +60,7 @@ public class BlackJack extends Table {
 		}
 		
 		// ask player to place a bet	
+		// player Actions
 	}
 	
 	public int getScoreVal(Card card) throws InvalidLogicException
@@ -76,11 +77,47 @@ public class BlackJack extends Table {
 			throw new InvalidLogicException("BlackJack.java: Only ranks A23456789TJQK are allowed\n");
 	}
 	
-	// hit
-	// stay
-	// split
-	// bust
-	// bet
+	/* + hit(int): void
+	* @param playerIndex: int, the row / player from playerHands
+	*/
+	public void hit(int playerIndex)
+	{
+		playerHands.get(playerIndex).add(this.deck.getTopCard());
+	}
+	
+	/* + stay(int): boolean
+	 * Does not allow to add more cards to players hand and ends player's turn.
+	 * @param playerIndex: int, the row/player from playerHands
+	 * @return boolean: does player want to stay
+	 */
+	public boolean stay(int playerIndex)
+	{
+		// TODO a better way of doing this
+		// possibly a value for each player
+		return true;
+	}
+	/* +split(int): void - maybe not dev right away
+	 * checks if both cards are the same rank
+	 * then splits their hand into two.
+	 */
+	/* + bust(int): boolean
+	 * if player has a rank 'A' and over 21, make it 11 to 1.
+	 * @param playerIndex: int - the row/player from playerHands
+	 * @return: boolean, if score is over 21, bust
+	 */
+	public boolean bust(int playerIndex, int[] scores)
+	{
+		if(scores[playerIndex] >= 21)
+		{
+			return true;
+		}
+		return false;
+	}
+	/* + bet(int): int, int - index of player, return be
+	 * Sets a bet for the game.
+	 * @param playerIndex: int - the row/player from playerHands
+	 * @return bet: int - the bet value
+	 */
 	
 	public static void main(String[] args)
 	{
