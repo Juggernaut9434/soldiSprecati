@@ -14,6 +14,7 @@ public class BlackJack extends Table {
 	
 	private Deck deck;
 	private ArrayList<ArrayList<Card>> playerHands;
+	private int[] scores;
 
 	public BlackJack(int maxPlayers, int ante, String dealer) 
 	{
@@ -21,55 +22,22 @@ public class BlackJack extends Table {
 		super(1, maxPlayers, ante, dealer);
 		
 		// make a deck and shuffle it
-		deck = new Deck();
+		setDeck(new Deck());
 		try {
-			deck.shuffle();
+			getDeck().shuffle();
 			this.addPlayer(new Gambler(dealer));	// have dealer always be index 0
 		} catch(InvalidLogicException e)
 		{
-			deck = new Deck();
+			setDeck(new Deck());
 		}
-		playerHands = new ArrayList<ArrayList<Card>>();
+		setPlayerHands(new ArrayList<ArrayList<Card>>());
+		setScores(new int[2]);		// for now, there wil only be two players, dealer and player.
 	}
 	
-	/***
-	 * + mainPlay(): void
-	 * where black jack is played with each hand
-	 * @throws InvalidLogicException 
-	 */
-	public void mainPlay() throws InvalidLogicException
+	public void scoreHands()
 	{
-		int numOfPlayers = super.players.size();
-		int[] playerScores = new int[numOfPlayers];		// instance with ints with the size of players
+		getScores()[0] = 0; getScores()[1] = 0;	// reset the scores
 		
-		// catch if no other players besides dealer are in
-		if(numOfPlayers<=1)
-			throw new InvalidLogicException("BlackJack.mainPlay():\tNo players to play"
-					+ "\nplayers:" + players);
-		
-		// deal 2 cards to every player and evaluate their round's cards value
-		// the row will be equivalent to the player's index
-		playerHands = deck.deal(2, numOfPlayers);
-		scoreHands(playerScores);
-		
-		// ask player to place a bet	
-		// player Actions
-		for(int i=0;i<numOfPlayers;i++)
-		{
-			int state = 0;
-			while(state == 0)
-			{
-				//TODO ask for user input on action
-				break;
-			}
-			if(state == -1) return;	//TODO find a thing to show that they lost
-			if(state == 1) return;	//TODO find a thing to show that they stayed and then compared to dealer.
-		}
-		
-	}
-	
-	public void scoreHands(int[] playerScores)
-	{
 		// access the player then access card within player
 		int i=0;	// for the playerScores index iteration
 		for(ArrayList<Card> player: getPlayerHands())
@@ -77,7 +45,9 @@ public class BlackJack extends Table {
 			for(Card card: player)
 			{
 				try {
-					playerScores[i] += this.getScoreVal(card);
+					// Set the playerScores
+					this.getScores()[i] += this.getScoreVal(card);
+					
 				} catch (InvalidLogicException e) {
 					e.printStackTrace();
 				}	// get total score of player and add to hand
@@ -109,7 +79,7 @@ public class BlackJack extends Table {
 	*/
 	public void hit(int playerIndex)
 	{
-		getPlayerHands().get(playerIndex).add(this.deck.getTopCard());
+		getPlayerHands().get(playerIndex).add(this.getDeck().getTopCard());
 	}
 	
 	/* + stay(int): boolean
@@ -130,13 +100,24 @@ public class BlackJack extends Table {
 	 * @param playerIndex: int - the row/player from playerHands
 	 * @return: boolean, if score is over 21, bust
 	 */
-	public int isBust(int playerIndex, int[] scores)
+	public boolean isBust(int playerIndex)
 	{
-		if(scores[playerIndex] >= 21)
+		this.scoreHands();
+		if(getScores()[playerIndex] >= 21)
 		{
-			return -1;
+			ArrayList<Card> hand = getPlayerHands().get(playerIndex);
+			for(Card c: hand)
+			{
+				if(c.getRank() == 'A')
+					// make the value of A from 11 to 1
+					getScores()[playerIndex] -= 10;
+			}
 		}
-		return 0;
+		if(getScores()[playerIndex] >= 21)
+		{
+			return true;
+		}
+		return false;
 	}
 	/* + bet(int): int, int - index of player, return be
 	 * Sets a bet for the game.
@@ -146,6 +127,26 @@ public class BlackJack extends Table {
 
 	public ArrayList<ArrayList<Card>> getPlayerHands() {
 		return playerHands;
+	}
+
+	public void setPlayerHands(ArrayList<ArrayList<Card>> playerHands) {
+		this.playerHands = playerHands;
+	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
+	public int[] getScores() {
+		return scores;
+	}
+
+	public void setScores(int[] scores) {
+		this.scores = scores;
 	}
 	
 }

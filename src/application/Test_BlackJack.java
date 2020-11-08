@@ -17,7 +17,7 @@ class Test_BlackJack {
 		Card c1 = new Card('2', 'C');
 		Card c2 = new Card('K', 'D');
 		Card c3 = new Card('5', 'H');
-		Card c4 = new Card('A', 'S');
+		Card c4 = new Card('J', 'S');
 		
 		ArrayList<Card> hand1 = new ArrayList<Card>();
 		ArrayList<Card> hand2 = new ArrayList<Card>();
@@ -33,11 +33,10 @@ class Test_BlackJack {
 	void basic_score_test() {
 		BlackJack game = this.getGameSetup();
 		
-		int[] playerScores = new int[2];
-		game.scoreHands(playerScores);
+		game.scoreHands();
 		
-		assertEquals("Test 1", 12, playerScores[0]);
-		assertEquals("Test 2", 16, playerScores[1]);
+		assertEquals("Test 1", 12, game.getScores()[0]);
+		assertEquals("Test 2", 15, game.getScores()[1]);
 	}
 	
 	@Test
@@ -55,10 +54,18 @@ class Test_BlackJack {
 		
 		Card c5 = new Card('7', 'D');
 		game.getPlayerHands().get(1).add(c5);
-		int[] playerScores = new int[2];
-		game.scoreHands(playerScores);
-		assertEquals("Score above 21", game.isBust(1, playerScores), -1);
-		assertEquals("Score below 21", game.isBust(0, playerScores), 0);
+		game.scoreHands();
+		assertEquals("Score below 21", game.isBust(0), false);
+		assertEquals("Score above 21", game.isBust(1), true);
+	}
+	@Test
+	void ace_test() {
+		BlackJack game = this.getGameSetup();
+		Card c5 = new Card('A', 'H');
+		game.getPlayerHands().get(1).add(c5);
+		game.scoreHands();	// now should be 16 NOT 26
+		assertEquals("Ace doesn't bust player", game.isBust(1), false);
+		assertEquals("Ace is converted to 1, score 16", game.getScores()[1], 16);
 	}
 
 }
