@@ -80,6 +80,7 @@ public class BlackJack extends Table {
 	public void hit(int playerIndex)
 	{
 		getPlayerHands().get(playerIndex).add(this.getDeck().getTopCard());
+		this.scoreHands();
 	}
 	
 	/* + stay(int): boolean
@@ -103,7 +104,7 @@ public class BlackJack extends Table {
 	public boolean isBust(int playerIndex)
 	{
 		this.scoreHands();
-		if(getScores()[playerIndex] >= 21)
+		if(getScores()[playerIndex] > 21)
 		{
 			ArrayList<Card> hand = getPlayerHands().get(playerIndex);
 			for(Card c: hand)
@@ -113,7 +114,7 @@ public class BlackJack extends Table {
 					getScores()[playerIndex] -= 10;
 			}
 		}
-		if(getScores()[playerIndex] >= 21)
+		if(getScores()[playerIndex] > 21)
 		{
 			return true;
 		}
@@ -124,7 +125,20 @@ public class BlackJack extends Table {
 	 * @param playerIndex: int - the row/player from playerHands
 	 * @return bet: int - the bet value
 	 */
-
+	
+	public String toString() 
+	{
+		String s = "";
+		for(ArrayList<Card> hand: this.getPlayerHands())
+		{
+			s += "*********\n";
+			for(Card c: hand)
+				s += c;
+		}
+		return s;
+	}
+	
+	/*************GETTER AND SETTER FUNCTIONS***********/
 	public ArrayList<ArrayList<Card>> getPlayerHands() {
 		return playerHands;
 	}
