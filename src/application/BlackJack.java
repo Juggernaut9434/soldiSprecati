@@ -81,6 +81,7 @@ public class BlackJack extends Table {
 	{
 		getPlayerHands().get(playerIndex).add(this.getDeck().getTopCard());
 		this.scoreHands();
+		return;
 	}
 	
 	/* + stay(int): boolean
