@@ -46,7 +46,8 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Label id="MyScore" prefHeight="93.0" prefWidth="68.0" text="0">
+            <!-- When running into NullPointer Exception, try putting fx: in front -->
+            <Label fx:id="MyScore" prefHeight="93.0" prefWidth="68.0" text="0">
                <font>
                   <Font size="29.0" />
                </font>
@@ -61,23 +62,23 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Ellipse fill="#09a118" layoutX="300.0" layoutY="150.0" radiusX="210.0" radiusY="139.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label id="ResultLabel" layoutX="482.0" layoutY="258.0" prefHeight="37.0" prefWidth="109.0" text="win or lose">
+            <Label fx:id="ResultLabel" layoutX="482.0" layoutY="258.0" prefHeight="37.0" prefWidth="109.0" text="win or lose">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView id="card1" fitHeight="54.0" fitWidth="38.0" layoutX="205.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="card1" fitHeight="54.0" fitWidth="38.0" layoutX="205.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/Images/Deck/2C.png" />
                </image>
             </ImageView>
-            <ImageView id="card2" fitHeight="54.0" fitWidth="38.0" layoutX="249.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="card3" fitHeight="54.0" fitWidth="38.0" layoutX="354.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="card4" fitHeight="54.0" fitWidth="38.0" layoutX="310.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="card5" fitHeight="54.0" fitWidth="38.0" layoutX="400.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="card6" fitHeight="54.0" fitWidth="38.0" layoutX="444.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="dealer2" fitHeight="54.0" fitWidth="38.0" layoutX="303.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="dealer1" fitHeight="54.0" fitWidth="38.0" layoutX="259.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card2" fitHeight="54.0" fitWidth="38.0" layoutX="249.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card3" fitHeight="54.0" fitWidth="38.0" layoutX="354.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card4" fitHeight="54.0" fitWidth="38.0" layoutX="310.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card5" fitHeight="54.0" fitWidth="38.0" layoutX="400.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="card6" fitHeight="54.0" fitWidth="38.0" layoutX="444.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dealer2" fitHeight="54.0" fitWidth="38.0" layoutX="303.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dealer1" fitHeight="54.0" fitWidth="38.0" layoutX="259.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>

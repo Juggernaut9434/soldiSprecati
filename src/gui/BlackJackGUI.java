@@ -4,6 +4,7 @@
 
 package gui;
 
+import application.BlackJack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,8 +27,12 @@ public class BlackJackGUI extends Application {
 		BorderPane root = loader.load();
 		
 		// Controller
+		BlackJack bj = new BlackJack(2, 10, "Jerry");
+		
 		BlackJackController bjc = loader.getController();
 		bjc.setGUI(this);
+		
+		
 		
 		// Create the Scene
 		Scene scene = new Scene(root);
@@ -38,8 +43,6 @@ public class BlackJackGUI extends Application {
 		// display the stage
 		stage.show();
 	}
-	// do not build a constructor
-	// use a method `initialize()`
 	
 	public static void main(String[] args)
 	{
