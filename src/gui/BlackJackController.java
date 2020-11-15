@@ -9,12 +9,12 @@ import java.util.ResourceBundle;
 import application.BlackJack;
 import application.Gambler;
 import exceptions.InvalidLogicException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 public class BlackJackController {
 
@@ -23,9 +23,8 @@ public class BlackJackController {
 	@FXML private Button HitBtn;
 	@FXML private Button StayBtn;
 	@FXML private Label MyScore, ResultLabel;
-	@FXML private ImageView card1, card2;
-	@FXML private ImageView card3, card4, card5, card6;
-	@FXML private ImageView dealer1, dealer2;
+	
+	@FXML private HBox addCards, myCards, dealerCards;
 	
 	@FXML private URL location;
 	@FXML private ResourceBundle resources;
@@ -66,9 +65,26 @@ public class BlackJackController {
 		// change the gui label to show the total
 		MyScore.setText(String.valueOf(bj.getScores()[1]));
 		
-		/******Add the cards to the table*********/
+		/******Add the cards to the table*********/		
+		myCards.getChildren().add(this.setImage(1,0));
+		myCards.getChildren().add(this.setImage(1,1));
+		dealerCards.getChildren().add(this.setImage(0, 0));
+		//dealerCards.getChildren().add(this.setImage(0, 1));
+		// the backside card for card 
+		
+		
 	}
 	
+	private ImageView setImage(int player, int card)
+	{
+		URL s = this.getClass().getResource("/Deck/" 
+				+ String.valueOf(bj.getPlayerHands().get(player).get(card).getRank()) 
+				+ bj.getPlayerHands().get(player).get(card).getSuit() + ".png");
+		Image i = new Image(s.toExternalForm(), 50, 50, true, true);
+		ImageView iv = new ImageView();
+		iv.setImage(i);		
+		return iv;
+	}
 	@FXML
     void hit() {
 		// only works when not busted
@@ -80,7 +96,10 @@ public class BlackJackController {
 				state = -1;
 				ResultLabel.setText("You Busted!");
 			}
+			// update the score value label
 			MyScore.setText(String.valueOf(bj.getScores()[1]));
+			// add that newest card to the table GUI, last hand in arrayList
+			myCards.getChildren().add(this.setImage(1, bj.getPlayerHands().get(1).size()-1));
 		}
     }
 
@@ -108,5 +127,9 @@ public class BlackJackController {
 			// compare hands
 			// declare winner, change label text
 		}
+		// restart. clear the table
+		myCards.getChildren().clear();
+		dealerCards.getChildren().clear();
+		initialize();
     }
 }

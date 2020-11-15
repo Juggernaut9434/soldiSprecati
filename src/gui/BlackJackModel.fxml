@@ -12,7 +12,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="HitBtn" mnemonicParsing="false" onAction="#hit" prefHeight="90.0" prefWidth="172.0" text="Hit">
+            <Button fx:id="HitBtn" mnemonicParsing="false" onAction="#hit" prefHeight="90.0" prefWidth="172.0" text="Hit">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -23,7 +23,7 @@
                   <Font size="29.0" />
                </font>
             </Button>
-            <Button id="StayBtn" lineSpacing="10.0" mnemonicParsing="false" onAction="#stay" pickOnBounds="false" prefHeight="90.0" prefWidth="176.0" text="Stay">
+            <Button fx:id="StayBtn" lineSpacing="10.0" mnemonicParsing="false" onAction="#stay" pickOnBounds="false" prefHeight="90.0" prefWidth="176.0" text="Stay">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -67,18 +67,9 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ImageView fx:id="card1" fitHeight="54.0" fitWidth="38.0" layoutX="205.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../assets/Images/Deck/2C.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="card2" fitHeight="54.0" fitWidth="38.0" layoutX="249.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card3" fitHeight="54.0" fitWidth="38.0" layoutX="354.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card4" fitHeight="54.0" fitWidth="38.0" layoutX="310.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card5" fitHeight="54.0" fitWidth="38.0" layoutX="400.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="card6" fitHeight="54.0" fitWidth="38.0" layoutX="444.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dealer2" fitHeight="54.0" fitWidth="38.0" layoutX="303.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dealer1" fitHeight="54.0" fitWidth="38.0" layoutX="259.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox fx:id="addCards" layoutX="122.0" layoutY="148.0" prefHeight="58.0" prefWidth="238.0" />
+            <HBox fx:id="myCards" layoutX="202.0" layoutY="214.0" prefHeight="58.0" prefWidth="153.0" />
+            <HBox fx:id="dealerCards" layoutX="241.0" layoutY="20.0" prefHeight="58.0" prefWidth="111.0" />
          </children>
       </Pane>
    </center>

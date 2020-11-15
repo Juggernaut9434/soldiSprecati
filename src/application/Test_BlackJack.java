@@ -67,5 +67,11 @@ class Test_BlackJack {
 		assertEquals("Ace doesn't bust player", game.isBust(1), false);
 		assertEquals("Ace is converted to 1, score 16", game.getScores()[1], 16);
 	}
+	
+	@Test
+	void get_card() {
+		BlackJack game = this.getGameSetup();
+		System.out.println(game.getPlayerHands().get(0).get(0));
+	}
 
 }

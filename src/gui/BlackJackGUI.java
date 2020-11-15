@@ -32,8 +32,6 @@ public class BlackJackGUI extends Application {
 		BlackJackController bjc = loader.getController();
 		bjc.setGUI(this);
 		
-		
-		
 		// Create the Scene
 		Scene scene = new Scene(root);
 		// Set the Scene to Stage
