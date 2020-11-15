@@ -20,18 +20,28 @@ public class BlackJackController {
 
 	
 	// fxml elements
-	@FXML private Button HitBtn;
-	@FXML private Button StayBtn;
+	@FXML private Button HitBtn, StayBtn;
+	@FXML private Button replayBtn;
 	@FXML private Label MyScore, ResultLabel;
+	@FXML private Label myMoney;
 	
 	@FXML private HBox addCards, myCards, dealerCards;
 	
 	@FXML private URL location;
 	@FXML private ResourceBundle resources;
+	private ImageView backOfCard;
 
 	
 	public BlackJack bj;
+	
+	/**
+	 * state 0: get another action
+	 * state -1: User Busted
+	 * state 1: User stayed
+	 * state 2: Dealer busted
+	 */
 	public static int state;
+	private static int amount = 10000;
 	
 	private BlackJackGUI main;
 	
@@ -39,6 +49,7 @@ public class BlackJackController {
 	public void setGUI(BlackJackGUI main)
 	{
 		this.main = main;
+		myMoney.setText(String.valueOf(amount));
 	}
 	
 	public BlackJackController() {}
@@ -47,6 +58,7 @@ public class BlackJackController {
 	private void initialize() 
 	{
 		state = 0;
+		ResultLabel.setText("");
 		/********SOLDI SPRECATI*********/
 		this.bj = new BlackJack(2, 10, "Jerry");
 		try {
@@ -69,28 +81,43 @@ public class BlackJackController {
 		myCards.getChildren().add(this.setImage(1,0));
 		myCards.getChildren().add(this.setImage(1,1));
 		dealerCards.getChildren().add(this.setImage(0, 0));
-		//dealerCards.getChildren().add(this.setImage(0, 1));
-		// the backside card for card 
-		
+		// the back side card for card 
+		backOfCard = new ImageView();
+		backOfCard.setImage(new Image( (this.getClass().getResource("/Deck/BackOfCard.png").toString()), 50, 50, true, true));
+		dealerCards.getChildren().add(backOfCard);
 		
 	}
 	
+	/*
+	 * @param int: player, the player index
+	 * @param int: card, the card index in the player's hand.
+	 * @return ImageView: an imageview with an image to add to the table
+	 */
 	private ImageView setImage(int player, int card)
 	{
+		// URL to the image in question
 		URL s = this.getClass().getResource("/Deck/" 
 				+ String.valueOf(bj.getPlayerHands().get(player).get(card).getRank()) 
 				+ bj.getPlayerHands().get(player).get(card).getSuit() + ".png");
+		// make an image of it, string form of url and resize the image.
 		Image i = new Image(s.toExternalForm(), 50, 50, true, true);
 		ImageView iv = new ImageView();
 		iv.setImage(i);		
 		return iv;
 	}
+	
 	@FXML
     void hit() {
 		// only works when not busted
 		if(state == 0)
 		{
-			System.out.println("hit");
+			try {
+				// pause user for a second
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			// add card to the user
 			bj.hit(1);
 			if(bj.isBust(1)) {
 				state = -1;
@@ -105,31 +132,108 @@ public class BlackJackController {
 
     @FXML
     void stay() {
+    	// press stay, change state
     	if(state == 0)
     	{
-	    	System.out.println("stay");
 	    	state = 1;
     	}
+    	// check to score hand
     	if(state == 1)
     	{
     		scoreGUI();
     	}
     }
     
+    @FXML
+    void replay() {
+    	// restart. clear the table
+		myCards.getChildren().clear();
+		dealerCards.getChildren().clear();
+		initialize();
+    }
+    
+    /**
+	 * state 0: get another action
+	 * state -1: User Busted
+	 * state 1: User stayed
+	 * state 2: Dealer busted
+	 */
     void scoreGUI()
     {
     	// after it is done
 		if(state != 0)
 		{
-			System.out.println("You have made it to the here!");
-			// TODO fill in the pseudo code
-			// dealer adds cards if necessary
-			// compare hands
-			// declare winner, change label text
+			// user busted
+			if(state == -1)
+			{
+				ResultLabel.setText("You Lost!");
+				// remove 100 from money total, start with 10,000
+				this.changeMoney(false);
+			}
+			// compare and maybe dealer bust,
+			else 
+			{
+				
+				// dealer's other card
+				dealerCards.getChildren().remove(backOfCard);	// remove back of card
+				dealerCards.getChildren().add(this.setImage(0, 1));
+				
+				// dealer adds cards if necessary
+				while(bj.getScores()[0] < 16 && state != -1)
+				{
+					// wait a few seconds before adding another card
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					// add a card if dealer is under 16
+					bj.hit(0);
+					// show the card on the table
+					dealerCards.getChildren().add(this.setImage(1, bj.getPlayerHands().get(1).size()-1));
+				}
+				// if dealer busted, user won.
+				if(bj.isBust(0))
+				{
+					state = 2;
+					ResultLabel.setText("You Won!");
+					//  add 100 to the money total
+					this.changeMoney(true);
+				}
+				// dealer did not bust and must compare hands
+				else
+				{
+					// if WIN: the user has higher or equal to dealer
+					if(bj.getScores()[1] >= bj.getScores()[0])
+					{
+						ResultLabel.setText("You Won!");
+						// add 100 to the money total
+						this.changeMoney(true);
+					}
+					// else LOST
+					else
+					{
+						ResultLabel.setText("You Lost!");
+						// remove 100 from money total
+						this.changeMoney(false);
+					}
+				}
+			}
 		}
-		// restart. clear the table
-		myCards.getChildren().clear();
-		dealerCards.getChildren().clear();
-		initialize();
+    }
+    
+    private void changeMoney(boolean earnMoney)
+    {
+    	// earn money
+    	if(earnMoney)
+    	{
+    		amount += bj.getAnte();
+    	} 
+    	else 
+    	{
+    		amount -= bj.getAnte();
+    	}
+    	// change the label
+		myMoney.setText(String.valueOf(amount));
     }
 }

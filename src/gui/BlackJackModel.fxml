@@ -67,9 +67,20 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <HBox fx:id="addCards" layoutX="122.0" layoutY="148.0" prefHeight="58.0" prefWidth="238.0" />
             <HBox fx:id="myCards" layoutX="202.0" layoutY="214.0" prefHeight="58.0" prefWidth="153.0" />
             <HBox fx:id="dealerCards" layoutX="241.0" layoutY="20.0" prefHeight="58.0" prefWidth="111.0" />
+            <Button fx:id="replayBtn" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" text="Replay" onAction="#replay" />
+            
+            <Label layoutX="482.0" layoutY="219.0" prefHeight="49.0" prefWidth="41.0" text="\$$:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="myMoney" layoutX="516.0" layoutY="219.0" prefHeight="49.0" prefWidth="41.0" text="">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>
