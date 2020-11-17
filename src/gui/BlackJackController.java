@@ -53,7 +53,7 @@ public class BlackJackController {
 	 * state 3: round is over
 	 */
 	public static int state;
-	private static int amount = 10;
+	private static int amount = 10000;
 	
 	private BlackJackGUI main;
 	
