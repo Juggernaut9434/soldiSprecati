@@ -81,6 +81,28 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <MenuBar layoutY="0.0">
+              <menus>
+                <Menu id="bet" mnemonicParsing="false" text="Change Bet" style="-fx-border-color: black;">
+                     <items>
+                        <RadioMenuItem fx:id="smallBet" mnemonicParsing="false" text="10" />
+                        <RadioMenuItem fx:id="mediumBet" mnemonicParsing="false" text="100" />
+                        <RadioMenuItem fx:id="largeBet" mnemonicParsing="false" text="1000" />
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help" style="-fx-border-color: black;">
+                  <items>
+                    <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+                   	<MenuItem fx:id="rules" mnemonicParsing="false" text="Rules" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label fx:id="gameOver" layoutX="143.0" layoutY="90.0" prefHeight="112.0" prefWidth="309.0" text="">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

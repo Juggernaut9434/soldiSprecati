@@ -159,6 +159,10 @@ public class BlackJack extends Table {
 	public int[] getScores() {
 		return scores;
 	}
+	
+	public void setAnte(int ante) {this.ante = ante;}
+	
+	public int getAnte() {return this.ante;}
 
 	public void setScores(int[] scores) {
 		this.scores = scores;

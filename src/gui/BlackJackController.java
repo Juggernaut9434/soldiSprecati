@@ -1,5 +1,7 @@
 // Michael Mathews 2020
 // Controller for the application
+// interacts with the fxml file
+// where all the logic of the Soldi Sprecati is.
 
 package gui;
 
@@ -12,6 +14,9 @@ import exceptions.InvalidLogicException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -23,9 +28,13 @@ public class BlackJackController {
 	@FXML private Button HitBtn, StayBtn;
 	@FXML private Button replayBtn;
 	@FXML private Label MyScore, ResultLabel;
-	@FXML private Label myMoney;
+	@FXML private Label myMoney, gameOver;
 	
 	@FXML private HBox addCards, myCards, dealerCards;
+	
+	@FXML private RadioMenuItem smallBet, mediumBet, largeBet;
+	@FXML private MenuItem about, rules;
+	
 	
 	@FXML private URL location;
 	@FXML private ResourceBundle resources;
@@ -36,12 +45,14 @@ public class BlackJackController {
 	
 	/**
 	 * state 0: get another action
+	 * state -2: Game OVER
 	 * state -1: User Busted
 	 * state 1: User stayed
 	 * state 2: Dealer busted
+	 * state 3: round is over
 	 */
 	public static int state;
-	private static int amount = 10000;
+	private static int amount = 10;
 	
 	private BlackJackGUI main;
 	
@@ -50,6 +61,7 @@ public class BlackJackController {
 	{
 		this.main = main;
 		myMoney.setText(String.valueOf(amount));
+		smallBet.setSelected(true);
 	}
 	
 	public BlackJackController() {}
@@ -58,7 +70,7 @@ public class BlackJackController {
 	private void initialize() 
 	{
 		state = 0;
-		ResultLabel.setText("");
+		
 		/********SOLDI SPRECATI*********/
 		this.bj = new BlackJack(2, 10, "Jerry");
 		try {
@@ -77,7 +89,11 @@ public class BlackJackController {
 		// change the gui label to show the total
 		MyScore.setText(String.valueOf(bj.getScores()[1]));
 		
-		/******Add the cards to the table*********/		
+		/**************GUI LOGIC*********************/
+		
+		// initially set result to nothing
+		ResultLabel.setText("");
+		// Add the cards to the table	
 		myCards.getChildren().add(this.setImage(1,0));
 		myCards.getChildren().add(this.setImage(1,1));
 		dealerCards.getChildren().add(this.setImage(0, 0));
@@ -86,6 +102,17 @@ public class BlackJackController {
 		backOfCard.setImage(new Image( (this.getClass().getResource("/Deck/BackOfCard.png").toString()), 50, 50, true, true));
 		dealerCards.getChildren().add(backOfCard);
 		
+		// one bet radio button at a time
+		ToggleGroup group = new ToggleGroup();
+		smallBet.setToggleGroup(group);
+		mediumBet.setToggleGroup(group);
+		largeBet.setToggleGroup(group);
+		
+		// initially set bet to small
+		if(smallBet.isSelected()) bj.setAnte(10);
+		else if(mediumBet.isSelected()) bj.setAnte(100);
+		else if(largeBet.isSelected()) bj.setAnte(1000);
+
 	}
 	
 	/*
@@ -122,6 +149,7 @@ public class BlackJackController {
 			if(bj.isBust(1)) {
 				state = -1;
 				ResultLabel.setText("You Busted!");
+				this.changeMoney(false);
 			}
 			// update the score value label
 			MyScore.setText(String.valueOf(bj.getScores()[1]));
@@ -141,6 +169,7 @@ public class BlackJackController {
     	if(state == 1)
     	{
     		scoreGUI();
+    		state = 3;
     	}
     }
     
@@ -149,7 +178,13 @@ public class BlackJackController {
     	// restart. clear the table
 		myCards.getChildren().clear();
 		dealerCards.getChildren().clear();
-		initialize();
+		// if above 0, be able to restart.
+		if(amount > 0) initialize();
+		else
+		{
+			state = -2;
+	    	gameOver.setText("GAME OVER!");
+		}
     }
     
     /**
@@ -157,6 +192,7 @@ public class BlackJackController {
 	 * state -1: User Busted
 	 * state 1: User stayed
 	 * state 2: Dealer busted
+	 * state 3: its over.
 	 */
     void scoreGUI()
     {
@@ -179,7 +215,7 @@ public class BlackJackController {
 				dealerCards.getChildren().add(this.setImage(0, 1));
 				
 				// dealer adds cards if necessary
-				while(bj.getScores()[0] < 16 && state != -1)
+				while(bj.getScores()[0] < 17 && state != -1)
 				{
 					// wait a few seconds before adding another card
 					try {
@@ -190,7 +226,7 @@ public class BlackJackController {
 					// add a card if dealer is under 16
 					bj.hit(0);
 					// show the card on the table
-					dealerCards.getChildren().add(this.setImage(1, bj.getPlayerHands().get(1).size()-1));
+					dealerCards.getChildren().add(this.setImage(0, bj.getPlayerHands().get(0).size()-1));
 				}
 				// if dealer busted, user won.
 				if(bj.isBust(0))

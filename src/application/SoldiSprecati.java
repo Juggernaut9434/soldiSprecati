@@ -80,7 +80,7 @@ public class SoldiSprecati {
 			} while(state == 0);
 			
 			// user's turn to hit/stay and user not busted.
-			while(bj.getScores()[0] < 16 && state != -1)
+			while(bj.getScores()[0] < 17 && state != -1)
 				bj.hit(0);
 			// if dealer busted, user won.
 			if(bj.isBust(0))

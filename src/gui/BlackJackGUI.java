@@ -1,10 +1,9 @@
 // Michael Mathews, 2020
 // BlackJack GUI, main function
-// interacts with the fxml file
+// interacts with the Controller
 
 package gui;
 
-import application.BlackJack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,9 +25,7 @@ public class BlackJackGUI extends Application {
 		// Create the Pane and all Details
 		BorderPane root = loader.load();
 		
-		// Controller
-		BlackJack bj = new BlackJack(2, 10, "Jerry");
-		
+		// Controller		
 		BlackJackController bjc = loader.getController();
 		bjc.setGUI(this);
 		
