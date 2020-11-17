@@ -20,6 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class BlackJackController {
 
@@ -33,7 +34,7 @@ public class BlackJackController {
 	@FXML private HBox addCards, myCards, dealerCards;
 	
 	@FXML private RadioMenuItem smallBet, mediumBet, largeBet;
-	@FXML private MenuItem about, rules;
+	@FXML private MenuItem about, rules, quit;
 	
 	
 	@FXML private URL location;
@@ -185,6 +186,13 @@ public class BlackJackController {
 			state = -2;
 	    	gameOver.setText("GAME OVER!");
 		}
+    }
+    
+    @FXML 
+    void quit() {
+    	// quite the application
+    	Stage stage = (Stage) this.HitBtn.getScene().getWindow();
+    	stage.close();
     }
     
     /**
