@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BlackJackController">
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="HitBtn" mnemonicParsing="false" onAction="#hit" prefHeight="90.0" prefWidth="172.0" text="Hit">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Button>
+            <Button fx:id="StayBtn" lineSpacing="10.0" mnemonicParsing="false" onAction="#stay" pickOnBounds="false" prefHeight="90.0" prefWidth="176.0" text="Stay">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="35.0" />
+            <Label prefHeight="90.0" prefWidth="87.0" text="Score:">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <!-- When running into NullPointer Exception, try putting fx: in front -->
+            <Label fx:id="MyScore" prefHeight="93.0" prefWidth="68.0" text="0">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Ellipse fill="#09a118" layoutX="300.0" layoutY="150.0" radiusX="210.0" radiusY="139.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="ResultLabel" layoutX="482.0" layoutY="258.0" prefHeight="37.0" prefWidth="109.0" text="win or lose">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox fx:id="myCards" layoutX="202.0" layoutY="214.0" prefHeight="58.0" prefWidth="153.0" />
+            <HBox fx:id="dealerCards" layoutX="241.0" layoutY="20.0" prefHeight="58.0" prefWidth="111.0" />
+            <Button fx:id="replayBtn" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" text="Replay" onAction="#replay" />
+            
+            <Label layoutX="482.0" layoutY="219.0" prefHeight="49.0" prefWidth="41.0" text="\$$:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="myMoney" layoutX="516.0" layoutY="219.0" prefHeight="49.0" prefWidth="41.0" text="">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <MenuBar layoutY="0.0">
+              <menus>
+                <Menu id="bet" mnemonicParsing="false" text="Change Bet" style="-fx-border-color: black;">
+                     <items>
+                        <RadioMenuItem fx:id="smallBet" mnemonicParsing="false" text="10" />
+                        <RadioMenuItem fx:id="mediumBet" mnemonicParsing="false" text="100" />
+                        <RadioMenuItem fx:id="largeBet" mnemonicParsing="false" text="1000" />
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help" style="-fx-border-color: black;">
+                  <items>
+                    <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+                   	<MenuItem fx:id="rules" mnemonicParsing="false" text="Rules" />
+                   	<MenuItem fx:id="quit" mnemonicParsing="false" text="quit" onAction="#quit"/>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label fx:id="gameOver" layoutX="143.0" layoutY="90.0" prefHeight="112.0" prefWidth="309.0" text="">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

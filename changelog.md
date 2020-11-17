@@ -5,12 +5,32 @@ A changelog is not a git commit history
 
 ## [Unreleased]
 ### [Added]
+
+### [Edited]
+
+### [Removed]
+
+## [v0.9.2.0] 11/16/2020
+### [Added]
+- gui/: all the gui application logic
+- SoldiSprecati: the terminal version of game
+- Test_BlackJack: the JUnit tests.
+
+### [Edited]
+- Deck: moved from assets into the src package
+
+### [Removed]
+- Hand: was no longer needed, replaced by a ArrayList<Card>
+
+## [v0.3.0.0] 10/10/2020
+
+### [Added]
 - Hand, to hold an array of cards
+- BlackJack: the first game for Soldi Sprecati
+that has actions for the game and started on logic.
 
 ### [Edited]
 - Table, BlackJack more logic
-
-### [Removed]
 
 ## [v0.0.1.0] 9/20/2020 4:50AM
 ### [Added]
